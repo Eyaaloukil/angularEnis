@@ -1,0 +1,91 @@
+<div *ngIf="item">
+  <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+    style="min-height: 600px; background-image: url(assets/img/theme/books.jpg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="col-lg-7 col-md-10">
+          <h1 class="display-2 text-white">Editer Publication {{publicationsDetails.titre}}</h1>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <div class="row">
+
+      <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">New Publication</h3>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-body">
+            <form #savePublicationForm="ngForm" (ngSubmit)="savePublicationForm.valid && onSubmit(savePublicationForm)">
+              <h6 class="heading-small text-muted mb-4">User information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-titre">Titre</label>
+                      <input name="titre" type="text" id="input-titre" #titre="ngModel"
+                        [(ngModel)]="publicationsDetails.titre" class="form-control form-control-alternative">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-type">type</label>
+                      <input name="type" type="text" id="input-type" #type="ngModel"
+                        [(ngModel)]="publicationsDetails.type" class="form-control form-control-alternative">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-date">Date Apparition</label>
+                      <input name="dateApparition" type="date" id="input-date" #dateApparition="ngModel"
+                        [(ngModel)]="publicationsDetails.dateApparition" class="form-control form-control-alternative">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4" />
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-lien">lien</label>
+                      <input name="lien" type="text" id="input-lien" #titre="ngModel"
+                        [(ngModel)]="publicationsDetails.lien" class="form-control form-control-alternative">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-sourcePdf">sourcePdf</label>
+                      <input name="sourcePdf" type="text" id="input-sourcePdf" #titre="ngModel"
+                        [(ngModel)]="publicationsDetails.sourcePdf" class="form-control form-control-alternative">
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+              <hr class="my-4" />
+              <!-- Description -->
+              <input type="submit" class="btn btn-danger" value="Editer Publication">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <input required class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="on"
+          placeholder="&#61442; Rechercher un utilisateur">
+<br>
+      <div class="table-responsive">
+        <table class="table align-items-center table-light table-flush">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Utilisateur</th>
+              <th scope="col">Email</th>
+              <th scope="col">Date de naissance</th>
+              <th scope="col">CV</th>
+              <th scope="col">Type</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr  *ngFor="let user of dataSource|filter:searchText">
+              <th scope="row">
+                <div class="media align-items-center">
+                  <a routerLink="/user/{{user.id}}" class="avatar rounded-circle mr-3">
+                    <img alt="Image placeholder" [src]='getImage(user.photo)'>
+                  </a>
+                  <div class="media-body">
+                    <span class="mb-0 text-sm">{{user.nom}} {{user.prenom}}</span>
+                  </div>
+                </div>
+              </th>
+              <td>
+                {{user.email}}              </td>
+              <td>
+                <span class="badge badge-dot mr-4">
+               {{user.dateNaissance}}
+                </span>
+              </td>
+              <td>
+                <i class="fa fa-file" aria-hidden="true"></i>
+<a href="{{user.cv}}" target="_blank">View </a>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span class="mr-2">{{user.role.split("ROLE_")[1]}}</span>
+
+                </div>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

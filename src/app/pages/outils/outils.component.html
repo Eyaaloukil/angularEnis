@@ -1,0 +1,83 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div *ngIf="isLoggedIn()">
+
+        <div class="table-responsive">
+          <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="addOutil()">
+            <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+            <span class="btn-inner--text">Ajouter</span>
+          </button>
+          <table class="table align-items-center table-dark table-flush">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">sourcePdf</th>
+
+                <th scope="col">Action</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let outil of item.outils">
+                <th scope="row">
+                  <div class="media align-items-center">
+
+                    <div class="media-body">
+                      <span class="mb-0 text-sm"> {{outil.date|date}}</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  <i class="fa fa-file" aria-hidden="true"></i>
+                  <a style="color:white" href="{{outil.sourcePdf}}" target="_blank"> Voir source </a>
+                <td>
+
+                  <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="editOutil(outil.id)">
+                    <span class="btn-inner--icon"><i class="ni ni-settings"></i></span>
+                    <span class="btn-inner--text">Editer</span>
+                  </button>
+                  <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="deleteOutil(outil.id)">
+                    <span class="btn-inner--icon"><i class="ni ni-basket"></i></span>
+                    <span class="btn-inner--text">Supprimer</span>
+                  </button>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="table-responsive">
+
+        <table class="table align-items-center table-dark table-flush">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">sourcePdf</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let outil of dataSource">
+              <th scope="row">
+                <div class="media align-items-center">
+
+
+                  <div class="media-body">
+                    <span class="mb-0 text-sm"> {{outil.date|date}}</span>
+                  </div>
+                </div>
+              </th>
+              <td>
+                <i class="fa fa-file" aria-hidden="true"></i>
+                <a style="color:white" href="{{outil.sourcePdf}}" target="_blank"> Voir source </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

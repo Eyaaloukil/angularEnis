@@ -1,0 +1,142 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div *ngIf="isLoggedIn()">
+
+                <div class="table-responsive">
+                    <button *ngIf="item.role=='ROLE_ADMIN'" class="btn btn-icon btn-3 btn-primary" type="button"
+                        (click)="addEvenement()">
+                        <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                        <span class="btn-inner--text">Ajouter</span>
+                    </button><br><br>
+                    <h2> Vos Evenement :</h2>
+                    <br><br>
+                    <table class="table align-items-center table-dark table-flush">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nom Evenement</th>
+                                <th scope="col">Lieu</th>
+
+                                <th scope="col">Date</th>
+                                <th scope="col">Action</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let evenement of item.evenements">
+                                <th scope="row">
+                                    <div class="media align-items-center">
+
+                                        <div class="media-body">
+                                            <span class="mb-0 text-sm">{{evenement.titre}}</span>
+                                        </div>
+                                    </div>
+                                </th>
+
+                                <td>
+                                    <div class="media align-items-center">
+
+                                        <div class="media-body">
+                                            <span class="mb-0 text-sm">{{evenement.lieu}}</span>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    {{evenement.date|date}}
+
+                                </td>
+                                <td>
+                                    <button class="btn btn-icon btn-3 btn-primary" type="button"
+                                        *ngIf="item.role=='ROLE_ADMIN'" (click)="editEvenement(evenement.id)">
+                                        <span class="btn-inner--icon"><i class="ni ni-settings"></i></span>
+                                        <span class="btn-inner--text">Editer</span>
+                                    </button>
+                                    <button class="btn btn-icon btn-3 btn-primary" type="button"
+                                        (click)="deleteEvenement(evenement.id)" *ngIf="item.role!='ROLE_ADMIN'">
+                                        <span class="btn-inner--icon"><i class="ni ni-basket"></i></span>
+                                        <span class="btn-inner--text">Retirer ma participation</span>
+                                    </button>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+            <h2> Les évenements de l'Enis :</h2>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+
+
+            <div class="container-fluid mt--7">
+                <div class="row">
+                    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0" *ngFor="let evenement of dataSource"
+                        style="margin-top:70px ;">
+                        <div class="card card-profile shadow">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3 order-lg-3">
+                                    <div class="card-profile-image">
+                                        <a href="javascript:void(0)">
+                                            <img src='../../../assets/img/theme/event33.png'
+                                                class="img-fluid rounded-circle">
+
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+
+                            </div>
+                            <div class="card-body pt-0 pt-md-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                                            <div>
+                                                <span class="heading"> {{evenement.titre}}</span>
+                                                <span class="description">Titre</span>
+                                            </div>
+                                            <div>
+                                                <span class="heading">{{evenement.lieu}}</span>
+                                                <span class="description">Lieu</span>
+                                            </div>
+                                            <div>
+                                                <span class="heading">{{evenement.date|date}}</span>
+                                                <span class="description">Date</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <button class="btn btn-icon btn-3 btn-success" type="button"
+                                        *ngIf="item.role!='ROLE_ADMIN'" (click)="Confirmer(evenement.id)">
+                                        <span class="btn-inner--icon"><i class="ni ni-calendar-grid-58"></i></span>
+                                        <span class="btn-inner--text">Participer</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

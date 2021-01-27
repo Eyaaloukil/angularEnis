@@ -1,0 +1,286 @@
+<div *ngIf="item">
+  <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+    style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="col-lg-7 col-md-10">
+          <h1 class="display-2 text-white">Hello {{item.nom}} {{item.prenom}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+        <div class="card card-profile shadow">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <a href="javascript:void(0)">
+                  <img [src]='retrievedImage' class="rounded-circle">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+
+          </div>
+          <div class="card-body pt-0 pt-md-4">
+            <div class="row">
+              <div class="col">
+                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                  <div>
+                    <span class="heading"> {{item.pubs.length}}</span>
+                    <span class="description">Publications</span>
+                  </div>
+                  <div>
+                    <span class="heading">{{item.evenements.length}}</span>
+                    <span class="description">Evenements</span>
+                  </div>
+                  <div>
+                    <span class="heading">{{item.outils.length}}</span>
+                    <span class="description">Outils</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <h3>
+                {{item.nom}} {{item.prenom}}<span class="font-weight-light">, {{item.dateNaissaice}}</span>
+              </h3>
+
+              <div class="h5 mt-4">
+                <i class="ni business_briefcase-24 mr-2"></i>{{item.diplome}}
+              </div>
+              <div>
+                <i class="ni education_hat mr-2" *ngIf="item.role=='ROLE_Enseignant'">{{item.etablissement}}</i>
+              </div>
+              <hr class="my-4" />
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">My account</h3>
+              </div>
+              <div class="col-4 text-right">
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Adresse Email</label>
+                    <p>{{item.email}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Prenom</label>
+                    <p>{{item.prenom}}</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Nom</label>
+                    <p>{{item.nom}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Autres informations</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">CV</label>
+                    <a href="{{item.cv}}" target="_blank">voir cv</a>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="item.role=='ROLE_Etudiant'">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Diplome</label>
+                    <p>{{item.diplome}}</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Sujet </label>
+                    <p>{{item.sujet}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Cin </label>
+                    <p>{{item.cin}}</p>
+                  </div>
+                </div>
+                <div class="col-lg-6" *ngIf="item.role=='ROLE_Etudiant' && item.encadrant">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Encadrant : </label>
+                    <p>{{item.encadrant.nom}}{{item.encadrant.prenom}}</p>
+
+                  </div>
+                </div>
+                <div class="col-lg-6" *ngIf="item.role=='ROLE_Enseignant'">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Etablissement </label>
+                    <p>{{item.etablissement}}</p>
+                  </div>
+                </div>
+              </div>
+              <!--Review Image-->
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-address">Date de naissance </label>
+                  <p>{{item.dateNaissance}}</p>
+                </div>
+              </div>
+
+
+            </div>
+            <hr class="my-4" />
+            <h2> Publications :</h2>
+            <div class="table-responsive">
+
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Lien</th>
+                    <th scope="col">Source Pdf</th>
+                    <th scope="col">dateApparition</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let publication of item.pubs">
+                    <th scope="row">
+                      <div class="media align-items-center">
+
+                        <div class="media-body">
+                          <span class="mb-0 text-sm">{{publication.titre}}</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td>
+                      <i class="fa fa-link" aria-hidden="true"></i>
+                      <a style="color:white" href="{{publication.lien}}" target="_blank"> Lien Source </a>
+                    </td>
+                    <td>
+
+                      <i class="fa fa-file" aria-hidden="true"></i>
+                      <a style="color:white" href="{{publication.sourcePdf}}" target="_blank"> Voir source </a>
+
+                    </td>
+                    <td>
+                      {{publication.dateApparition|date}}
+                    </td>
+
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h2>Outils :</h2>
+            <div class="table-responsive">
+
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">sourcePdf</th>
+
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let outil of item.outils">
+                    <th scope="row">
+                      <div class="media align-items-center">
+
+                        <div class="media-body">
+                          <span class="mb-0 text-sm"> {{outil.date|date}}</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td>
+                      <i class="fa fa-file" aria-hidden="true"></i>
+                      <a style="color:white" href="{{outil.sourcePdf}}" target="_blank"> Voir source </a>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-responsive">
+
+              <h2> Evenements :</h2>
+              <table class="table align-items-center table-dark table-flush">
+                  <thead class="thead-dark">
+                      <tr>
+                          <th scope="col">Nom Evenement</th>
+                          <th scope="col">Lieu</th>
+
+                          <th scope="col">Date</th>
+
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let evenement of item.evenements">
+                          <th scope="row">
+                              <div class="media align-items-center">
+
+                                  <div class="media-body">
+                                      <span class="mb-0 text-sm">{{evenement.titre}}</span>
+                                  </div>
+                              </div>
+                          </th>
+
+                          <td>
+                              <div class="media align-items-center">
+
+                                  <div class="media-body">
+                                      <span class="mb-0 text-sm">{{evenement.lieu}}</span>
+                                  </div>
+                              </div>
+                          </td>
+
+                          <td>
+                              {{evenement.date|date}}
+
+                          </td>
+
+
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
